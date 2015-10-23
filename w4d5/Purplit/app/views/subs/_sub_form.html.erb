@@ -1,0 +1,14 @@
+<!--  Requires: user, action-->
+<form method="post" action="<%= locals[:action] %>">
+  <%= auth_token %>
+
+  <p><label>Title
+    <input type="text" name="sub[title]" value="<%= locals[:sub].title %>">
+  </label></p>
+
+  <p><label>Description </p>
+    <p><textarea name="sub[description]" rows="4"><%= locals[:sub].description %></textarea>
+  </label></p>
+
+  <button>Submit</button>
+</form>

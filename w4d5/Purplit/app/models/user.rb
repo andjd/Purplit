@@ -2,7 +2,11 @@ class User < ActiveRecord::Base
 
   validates :name, :password_digest, :session_token, presence: true
   validates :name, :session_token, uniqueness: true
-  validates :password, length: { min: 6, allow_nil: true }
+  validates :password, length: { minimum: 6, allow_nil: true }
+
+  has_many :subs,
+  class_name: "Sub",
+  foreign_key: :moderator_id
 
   before_validation :ensure_session_token
 
@@ -14,7 +18,7 @@ class User < ActiveRecord::Base
     nil
   end
 
-  
+
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)
@@ -26,11 +30,11 @@ class User < ActiveRecord::Base
 
   def reset_session_token!
     self.session_token = SecureRandom.urlsafe_base64(16)
+    self.save!
   end
 
   def ensure_session_token
     self.session_token || reset_session_token!
   end
-
 
 end

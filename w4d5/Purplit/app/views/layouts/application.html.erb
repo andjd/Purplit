@@ -8,7 +8,7 @@
 
   <h1> <font color="purple"> Purlpit : brusing your ego since 2015 </font> </h1>
 
-  <% unless flash[:errors].empty? %>
+  <% unless flash[:errors].nil? %>
     <ul>
       <% flash[:errors].each do |error| %>
         <li> <%= error %> </li>
@@ -16,7 +16,7 @@
     </ul>
   <% end %>
 
-  render 'shared/login_logout'
+  <%= render 'shared/login_logout' %>
 </head>
 <body>
 

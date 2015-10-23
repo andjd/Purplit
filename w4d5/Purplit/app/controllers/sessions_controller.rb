@@ -6,10 +6,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by_credentials(*params[:user][:name, :password])
+    user = User.find_by_credentials(params[:user][:name], params[:user][:password])
     unless user.nil?
       log_in!(user)
-      redirect_to #something
+      redirect_to user_url(user)
     else
       flash.now[:errors] = ["Invalid credentials"]
       @user = User.new name: params[:user][:name]
@@ -20,6 +20,7 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out!
+    redirect_to new_session_url
   end
 
 end #class
