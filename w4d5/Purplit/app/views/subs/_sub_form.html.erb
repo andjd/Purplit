@@ -1,14 +1,20 @@
-<!--  Requires: user, action-->
-<form method="post" action="<%= locals[:action] %>">
+<!--  Requires: sub, action-->
+<% action = (sub.persisted? ? sub_url(sub) : subs_url) %>
+
+<form method="post" action="<%= action %>">
   <%= auth_token %>
 
+  <%= rails_verb(sub) %>
+
   <p><label>Title
-    <input type="text" name="sub[title]" value="<%= locals[:sub].title %>">
+    <input type="text" name="sub[title]" value="<%= sub.title %>">
   </label></p>
 
   <p><label>Description </p>
-    <p><textarea name="sub[description]" rows="4"><%= locals[:sub].description %></textarea>
+    <p><textarea name="sub[description]" rows="4"><%= sub.description %></textarea>
   </label></p>
 
-  <button>Submit</button>
+  <button>
+    <%= sub.persisted? ? "Update" : "Create" %>
+  </button>
 </form>

@@ -1,0 +1,25 @@
+<% action = posts_url(@post.sub) %>
+
+<h2>New Post: </h2>
+
+<form action="<%= action %>" method="POST">
+  <%= auth_token %>
+  <p><label>Title:
+  <input type="text", name="post[title]">
+</label></p>
+<label> <p>
+  <input type="radio" name="post[post_type]" value="content">
+  Description:
+  <textarea name="post[content]"> </textarea>
+</label> </p>
+<label> <p>
+  <input type="radio" name="post[post_type]" value="url">
+  URL:
+  <input type="text" name="post[url]">
+</label> </p>
+
+<input type="hidden" name="post[sub_id]" value="<%= params[:sub_id] %>">
+
+<button>Create!</button>
+
+</form>

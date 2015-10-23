@@ -1,0 +1,7 @@
+<h2> Subs </h2>
+<ul>
+<% Sub.all.each do |sub| %>
+  <li><a href="<%= sub_url(sub) %>"> <%= sub.title %></a></li>
+<% end %>
+</ul>
+<a href="<%= new_user_sub_url(current_user) %>">Create New SubPurplit</a>

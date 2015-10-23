@@ -1,3 +1,11 @@
 <h2> <%= @sub.title %> </h2>
 <h3> By: <%= @sub.moderator.name %> </h3>
 <p> <%=  @sub.description %> </p>
+
+<% @sub.posts.each do |post| %>
+
+<p> <h4> <%= post.title %> </h4> </p>
+<p> <%= post.content unless post.content.blank? %>
+  <a href="<%= post.url unless post.url.blank? %>"> <%= post.url unless post.url.blank? %> </a> </p>
+
+  <% end %>
